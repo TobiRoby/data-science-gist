@@ -19,12 +19,10 @@ WORKDIR /home/root/app
 ENV PYTHONPATH=/home/root/app
 
 FROM base as ide
-# TODO check if needed
-# add git and auto-complete
-RUN apt-get install -y git \
+# install git
+RUN apt-get install -y git bash-completion \
     && apt-get clean \
-    && /bin/bash -c "curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash"; \
-    /bin/bash -c "echo 'source ~/.git-completion.bash' >> ~/.bashrc"
+    && echo 'source /usr/share/bash-completion/completions/git' >> ~/.bashrc
 
 # TODO newer version (problems with not finding poetry in ENV)
 # install code-server
