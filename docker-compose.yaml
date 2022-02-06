@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  # IDE in browser
+  ide:
+    build:
+      context: .
+      target: ide
+    env_file:
+      - .env
+    image: project_ide
+    container_name: project_ide
+    ports:
+      - 8123:8123
+    volumes:
+      - .:/home/root/app/.
+      - vscode-state:/root/.local/share/code-server/User/state/
+      - pre-commit:/root/.cache/pre-commit
+      - poetry-cache:/root/.cache/pypoetry
+      - ssh-cache:/root/.ssh/
+      # TODO fix
+      # - $HOME/.gitconfig:/root/.gitconfig
+    #  - $SSH_AUTH_SOCK:/tmp/authsock
+    # environment:
+    #  SSH_AUTH_SOCK: /tmp/authsock
+    command: bash -c "poetry run pre-commit install && code-server --auth none --bind-addr 0.0.0.0:8123 /home/root/app"
+
+
+volumes:
+  vscode-state:
+  pre-commit:
+  poetry-cache:
+  ssh-cache:
