@@ -58,4 +58,4 @@ RUN poetry install --no-dev \
 COPY . .
 
 # start app
-CMD poetry run python run_app.py
+CMD poetry run python project/main.py
