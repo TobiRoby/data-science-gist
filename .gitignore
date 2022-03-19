@@ -1,0 +1,14 @@
+# ide
+/.vscode/*
+!/.vscode/settings.json.example
+
+# python
+/env
+/analysis
+/logs
+__pycache__
+.mypy_cache
+*.pyc
+*.egg-info
+.pytest_cache
+.python-version
