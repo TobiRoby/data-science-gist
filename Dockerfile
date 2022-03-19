@@ -24,16 +24,13 @@ RUN apt-get install -y git bash-completion \
     && apt-get clean \
     && echo 'source /usr/share/bash-completion/completions/git' >> ~/.bashrc
 
-# TODO newer version (problems with not finding poetry in ENV)
 # install code-server
-RUN curl -fOL https://github.com/cdr/code-server/releases/download/v3.12.0/code-server_3.12.0_amd64.deb; \
-    dpkg -i code-server_3.12.0_amd64.deb \
-    && rm code-server_3.12.0_amd64.deb
+RUN curl -fOL https://github.com/cdr/code-server/releases/download/v4.1.0/code-server_4.1.0_amd64.deb; \
+    dpkg -i code-server_4.1.0_amd64.deb \
+    && rm code-server_4.1.0_amd64.deb
 
 # extensions to code-server
-RUN SERVICE_URL="https://open-vsx.org/vscode/gallery" \
-    ITEM_URL="https://open-vsx.org/vscode/item" \
-    code-server --install-extension ms-python.python \
+RUN code-server --install-extension ms-python.python \
     code-server --install-extension ms-pyright.pyright \
     code-server --install-extension mhutchie.git-graph \
     code-server --install-extension njpwerner.autodocstring \
@@ -45,6 +42,9 @@ COPY pyproject.toml poetry.lock* ./
 RUN poetry install \
     && rm -rf ~/.cache/pypoetry/{cache,artifacts} \
     && rm pyproject.toml poetry.lock
+
+# temporary fix for not correct path in vscode terminals (https://github.com/coder/code-server/issues/4699)
+RUN echo "export PATH=$PATH" >> /root/.bashrc
 
 FROM base as app
 # pyproject.toml and required lock-file
