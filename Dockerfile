@@ -46,10 +46,6 @@ RUN poetry install \
     && rm -rf ~/.cache/pypoetry/{cache,artifacts} \
     && rm pyproject.toml poetry.lock
 
-# TODO remove
-RUN git config --global user.email "tobias.rippel@gmx.de"
-RUN git config --global user.name "Tobias Rippel"
-
 FROM base as app
 # pyproject.toml and required lock-file
 COPY pyproject.toml poetry.lock ./

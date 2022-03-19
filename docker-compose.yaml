@@ -18,8 +18,7 @@ services:
       - poetry-cache:/root/.cache/pypoetry
       - ssh-cache:/root/.ssh/
       - $SSH_AUTH_SOCK:/tmp/authsock
-      # TODO fix
-        # - $HOME/.gitconfig:/root/.gitconfig
+      - $HOME/.gitconfig:/root/.gitconfig
     environment:
       SSH_AUTH_SOCK: /tmp/authsock
     command: bash -c "poetry run pre-commit install && code-server --auth none --bind-addr 0.0.0.0:8123 /home/root/app"
