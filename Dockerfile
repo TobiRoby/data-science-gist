@@ -3,16 +3,22 @@ FROM python:3.9-slim-bullseye as base
 
 # set timezone to berlin
 ENV TZ=Europe/Berlin
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
-    apt-get install -y tzdata && \
-    dpkg-reconfigure --frontend noninteractive tzdata
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/timezone \
+    && apt-get update \
+    && apt-get upgrade -y --autoremove \
+    && apt-get install -y tzdata \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && apt-get clean
 
 # install & source poetry
 RUN apt-get update \
     && apt-get install -y curl \
     && apt-get clean
-RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.1.12
+RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.2.0b1
 ENV PATH="${PATH}:/root/.local/bin"
+ENV POETRY_VIRTUALENVS_CREATE=False
+ENV POETRY_INSTALLER_MAX_WORKER=10
 
 # create app folder & add to pythonpath for direct python shell execution
 WORKDIR /home/root/app
@@ -20,7 +26,8 @@ ENV PYTHONPATH=/home/root/app
 
 FROM base as ide
 # install git
-RUN apt-get install -y git bash-completion \
+RUN apt-get update \
+    && apt-get install -y git bash-completion \
     && apt-get clean \
     && echo 'source /usr/share/bash-completion/completions/git' >> ~/.bashrc
 
