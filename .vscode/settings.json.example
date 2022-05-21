@@ -6,7 +6,6 @@
     "editor.rulers": [
         100
     ],
-    "python.defaultInterpreterPath": "/root/.cache/pypoetry/virtualenvs/dev-setup-5tvQA6w3-py3.9/bin/python",
     "python.formatting.provider": "black",
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
