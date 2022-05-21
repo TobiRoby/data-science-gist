@@ -18,12 +18,10 @@
         "tests",
         "--rootdir=${workspaceFolder}"
     ],
-    "python.autoComplete.addBrackets": true,
     "python.terminal.activateEnvInCurrentTerminal": true,
     "jupyter.sendSelectionToInteractiveWindow": true,
     "jupyter.jupyterServerType": "local",
     "jupyter.exportWithOutputEnabled": true,
     "jupyter.notebookFileRoot": "${workspaceFolder}",
-    "jupyter.searchForJupyter": false,
     "jupyter.interactiveWindowMode": "single",
 }
