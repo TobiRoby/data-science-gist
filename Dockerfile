@@ -25,9 +25,9 @@ RUN apt-get install -y git bash-completion \
     && echo 'source /usr/share/bash-completion/completions/git' >> ~/.bashrc
 
 # install code-server
-RUN curl -fOL https://github.com/cdr/code-server/releases/download/v4.2.0/code-server_4.2.0_amd64.deb; \
-    dpkg -i code-server_4.2.0_amd64.deb \
-    && rm code-server_4.2.0_amd64.deb
+RUN curl -fOL https://github.com/cdr/code-server/releases/download/v4.4.0/code-server_4.4.0_amd64.deb; \
+    dpkg -i code-server_4.4.0_amd64.deb \
+    && rm code-server_4.4.0_amd64.deb
 
 # extensions to code-server
 RUN code-server --install-extension ms-python.python \
