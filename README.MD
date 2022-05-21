@@ -5,7 +5,7 @@ Look into the [quickstart section](#quickstart-aka-developing-in-a-container) fo
 Features:
 1. develop and test code in production environment ([code server](https://coder.com/docs/code-server/latest) in container)
 2. high code reproducibility with deterministic environments (container & [poetry](https://python-poetry.org/))
-3. code review automatization ([pre-commit](https://pre-commit.com/), [black](https://black.readthedocs.io/en/stable/) & [isort](https://pycqa.github.io/isort/), [flake8](https://flake8.pycqa.org/en/latest/), [pydocstyle](http://www.pydocstyle.org/en/stable/) and [mypy](http://mypy-lang.org/))
+3. code review automation ([pre-commit](https://pre-commit.com/), [black](https://black.readthedocs.io/en/stable/) & [isort](https://pycqa.github.io/isort/), [flake8](https://flake8.pycqa.org/en/latest/), [pydocstyle](http://www.pydocstyle.org/en/stable/) and [mypy](http://mypy-lang.org/))
 4. personal Data Science paradigms
     - utilizing interactive development possibility based on jupyter with vs code's [python](https://open-vsx.org/extension/ms-python/python) extension
     - code structuring (tbd)
@@ -65,7 +65,7 @@ Downsides:
 
 # 2. High code reproducibility with deterministic environments
 tbd
-# 3. Code review automatization
+# 3. Code review automation
 tbd
 # 4. Personal Data Science paradigms
 tbd
