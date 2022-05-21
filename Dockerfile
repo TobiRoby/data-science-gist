@@ -1,5 +1,5 @@
 # BASE
-FROM python:3.9-slim-bullseye as base
+FROM python:3.10-slim-bullseye as base
 
 # set timezone to berlin
 ENV TZ=Europe/Berlin

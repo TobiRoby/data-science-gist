@@ -35,7 +35,9 @@ Tested with linux and wsl2 on windows.
 3. Access code server via browser: `localhost:8123`\
  You are accessing vs code in the container.\
  Tip: use a chrome based browser and install the `code-server` app from that browser.\
- Thus your vs code experience comes close of running native vs code (e.g. nearly 100% working keyboard shortcuts)
+ Thus, your vs code experience comes close of running native vs code (e.g. nearly 100% working keyboard shortcuts).
+
+4. Optional: Rename existing `.vscode/settings.json.example` to `.vscode/settings.json` in the IDE to quickly apply suggested vscode configurations.
 
 ## Build in functionality
 1. Use your host ssh credentials in the container. \
