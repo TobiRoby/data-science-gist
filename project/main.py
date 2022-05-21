@@ -1,6 +1,6 @@
 """Application main."""
-
-import pandas as pd
+from project.load import load_iris_data
 
 if __name__ == "__main__":
-    print(pd.DataFrame({"a": [1, 2], "b": [17, 42]}))
+    iris_data = load_iris_data()
+    print(iris_data)
