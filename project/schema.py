@@ -1,4 +1,5 @@
 """Data(frame) schemas."""
+import pandas as pd
 from pandera import Field, SchemaModel
 from pandera.typing import Series
 
@@ -21,11 +22,27 @@ class DataAdapterModel(StrictModel):
         coerce = True
 
 
-class IrisData(DataAdapterModel):
-    """Iris data set."""
+class PatientsAppointment(DataAdapterModel):
+    """Patient appointment data."""
 
-    sepal_length: Series[float] = Field(ge=0, le=10, description="length of sepal")
-    sepal_width: Series[float] = Field(ge=0, le=10, description="width of sepal")
-    petal_length: Series[float] = Field(ge=0, le=10, description="length of petal")
-    petal_width: Series[float] = Field(ge=0, le=10, description="width of petal")
-    species: Series[str] = Field(description="Iris species")
+    patient_id: Series[int] = Field(ge=0, description="patient id")
+    appointment_id: Series[int] = Field(ge=0, description="appointment id")
+    gender: Series[pd.CategoricalDtype] = Field(
+        dtype_kwargs={"categories": ["F", "M"], "ordered": False}, description="patient's gender"
+    )
+    scheduled_datetime: Series[pd.DatetimeTZDtype] = Field(
+        dtype_kwargs={"unit": "ns", "tz": "UTC"},
+        description="datetime when an appointment is booked",
+    )
+    appointment_day: Series[pd.DatetimeTZDtype] = Field(
+        dtype_kwargs={"unit": "ns", "tz": "UTC"}, description="day when an appointment is scheduled"
+    )
+    age: Series[int] = Field(description="patient's age")
+    neighborhood: Series[pd.CategoricalDtype] = Field(description="patient's neighborhood")
+    scholarship: Series[bool] = Field(description="True, if patient has a scholarship.")
+    hipertension: Series[bool] = Field(description="True, if patient has hipertension.")
+    diabetes: Series[bool] = Field(description="True, if patient has diabetes.")
+    alcoholism: Series[bool] = Field(description="True, if patient has alcoholism.")
+    handcap: Series[bool] = Field(description="True, if patient has a handicap.")
+    sms_received: Series[bool] = Field(description="True, if patient has received a sms.")
+    no_show: Series[bool] = Field(description="True, if patient showed up to the appointment.")

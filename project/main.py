@@ -1,6 +1,6 @@
 """Application main."""
-from project.load import load_iris_data
+from project.data_adapter import load_patients_appointment_data
 
 if __name__ == "__main__":
-    iris_data = load_iris_data()
-    print(iris_data)
+    patient_appointments = load_patients_appointment_data()
+    print(patient_appointments)
