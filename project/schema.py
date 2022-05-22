@@ -46,3 +46,15 @@ class PatientsAppointment(DataAdapterModel):
     handcap: Series[bool] = Field(description="True, if patient has a handicap.")
     sms_received: Series[bool] = Field(description="True, if patient has received a sms.")
     no_show: Series[bool] = Field(description="True, if patient showed up to the appointment.")
+
+
+class PatientsAppointmentFeaturesLabel(PatientsAppointment):
+    """Features and label for model training of appointment no_show."""
+
+
+class PatientsAppointmentFeaturesLabelPrediction(PatientsAppointmentFeaturesLabel):
+    """Features, label and prediction for model training of appointment no_show."""
+
+    no_show_probability_prediction: Series[float] = Field(
+        description="model no_show probability prediction"
+    )
