@@ -30,7 +30,7 @@ class PatientsAppointment(DataAdapterModel):
     gender: Series[pd.CategoricalDtype] = Field(
         dtype_kwargs={"categories": ["F", "M"], "ordered": False}, description="patient's gender"
     )
-    scheduled_datetime: Series[pd.DatetimeTZDtype] = Field(
+    appointment_scheduled_datetime: Series[pd.DatetimeTZDtype] = Field(
         dtype_kwargs={"unit": "ns", "tz": "UTC"},
         description="datetime when an appointment is booked",
     )
@@ -50,6 +50,17 @@ class PatientsAppointment(DataAdapterModel):
 
 class PatientsAppointmentFeaturesLabel(PatientsAppointment):
     """Features and label for model training of appointment no_show."""
+
+    days_between_scheduling_and_appointment: Series[float] = Field(
+        description=(
+            "Days between scheduling datetime and appointment date."
+            "Clipped to 0 if scheduling happens on same day (-> is negative)."
+        )
+    )
+    appointment_scheduling_dayofweek: Series[int] = Field(
+        description="Day of week of appointment scheduling."
+    )
+    appointment_scheduling_hour: Series[int] = Field(description="Hour of appointment scheduling.")
 
 
 class PatientsAppointmentFeaturesLabelPrediction(PatientsAppointmentFeaturesLabel):

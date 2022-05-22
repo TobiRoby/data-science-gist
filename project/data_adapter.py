@@ -25,7 +25,7 @@ def load_patients_appointment_data() -> DataFrame[PatientsAppointment]:
             "PatientId": "patient_id",
             "AppointmentID": "appointment_id",
             "Gender": "gender",
-            "ScheduledDay": "scheduled_datetime",
+            "ScheduledDay": "appointment_scheduled_datetime",
             "AppointmentDay": "appointment_day",
             "Age": "age",
             "Neighbourhood": "neighborhood",
@@ -43,7 +43,7 @@ def load_patients_appointment_data() -> DataFrame[PatientsAppointment]:
     appointments_types = appointments_renamed.assign(
         patient_id=lambda df: df.patient_id.astype("int"),
         gender=lambda df: df.gender.astype(pd.CategoricalDtype(categories=["F", "M"])),
-        scheduled_datetime=lambda df: pd.to_datetime(df.scheduled_datetime),
+        appointment_scheduled_datetime=lambda df: pd.to_datetime(df.appointment_scheduled_datetime),
         appointment_day=lambda df: pd.to_datetime(df.appointment_day),
         # Optional: better deterministic category encoding needed when hosting model
         neighborhood=lambda df: df.neighborhood.astype("category"),

@@ -38,13 +38,18 @@ def train_no_show_model(
 
     # feature definition
     PATIENT_NO_SHOW_MODEL_FEATURES = [
+        "gender",
         "age",
+        "neighborhood",
         "scholarship",
         "hipertension",
         "diabetes",
         "alcoholism",
         "handcap",
         "sms_received",
+        "days_between_scheduling_and_appointment",
+        "appointment_scheduling_dayofweek",
+        "appointment_scheduling_hour",
     ]
 
     # first model training with early stopping on training set only
@@ -52,6 +57,8 @@ def train_no_show_model(
         **{
             "booster": "gbtree",
             "objective": "binary:logistic",
+            "tree_method": "approx",
+            "enable_categorical": True,
             "n_estimators": 5000,
             "colsample_bytree": 0.9,
             "learning_rate": 0.2,
