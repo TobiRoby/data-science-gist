@@ -66,9 +66,30 @@ Downsides:
 - being a little (1-2 months) behind the latest vs code releases, due to integration dependency of code server project.
 
 # 2. High code reproducibility with deterministic environments
-tbd
+High code reproducibility is very important when:
+- checking out and testing new feature (branches) in development
+- deploying code from development into a productive environment
+- debugging productive code in a safe development environment
+
+Deterministic environments are majorly achieved by two technologies used in this project:
+1. [docker](https://www.docker.com/) for deterministic virtualized images and containers
+2. [poetry](https://python-poetry.org/) as a deterministic python package manager
+
+Both technologies can be replaced via drop in replacements like [podman](https://podman.io/) for docker and [pipenv](https://pipenv.pypa.io/en/latest/) for poetry
+
+TODO explain dockerfile multi-stage build
+
 # 3. Code review automation
-tbd
+Focusing on your main project goals and achieving them is our main goal.
+One way of freeing time in code reviews is by automating and enforcing code standards.
+
+First you need to decide what code standards you want to apply in your project.
+This project contains the following tools:
+- [black](https://black.readthedocs.io/en/stable/) & [isort](https://pycqa.github.io/isort/) for automated code formatting
+- [flake8](https://flake8.pycqa.org/en/latest/) & [mypy](http://mypy-lang.org/) for linting and preventing common errors
+- [pydocstyle](http://www.pydocstyle.org/en/stable/) for documentation
+
+A very good tool for this is [pre-commit](https://pre-commit.com/)
 # 4. Personal Data Science paradigms
 tbd
 # VS Code extensions
