@@ -5,6 +5,7 @@ import xgboost
 from sklearn.metrics import log_loss, roc_auc_score
 
 from project.data_adapter import load_patients_appointment_data
+from project.prepare import engineer_features
 from project.train import train_no_show_model
 
 # DATA LOADING
@@ -17,18 +18,7 @@ validation_start = datetime.fromisoformat("2016-05-28T00:00:00+00:00")
 test_end = datetime.fromisoformat("2016-06-08T00:00:00+00:00")
 
 # FEATURE ENGINEERING
-patient_appointments_features = patient_appointments.assign(
-    days_between_scheduling_and_appointment=lambda df: (
-        df.appointment_day - df.appointment_scheduled_datetime
-    )
-    .dt.total_seconds()
-    .div(60)
-    .div(60)
-    .div(24)
-    .clip(lower=0),
-    appointment_scheduling_dayofweek=lambda df: df.appointment_scheduled_datetime.dt.dayofweek,
-    appointment_scheduling_hour=lambda df: df.appointment_scheduled_datetime.dt.hour,
-)
+patient_appointments_features = engineer_features(patient_appointments=patient_appointments)
 
 # MODEL TRAINING
 model, patient_appointments_predictions = train_no_show_model(
