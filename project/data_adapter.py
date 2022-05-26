@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 from pandera.decorators import check_types
-from pandera.typing import DataFrame
+from pandera.typing.pandas import DataFrame
 
 from project.schema import PatientsAppointment
 
@@ -45,7 +45,7 @@ def load_patients_appointment_data() -> DataFrame[PatientsAppointment]:
         gender=lambda df: df.gender.astype(pd.CategoricalDtype(categories=["F", "M"])),
         appointment_scheduled_datetime=lambda df: pd.to_datetime(df.appointment_scheduled_datetime),
         appointment_day=lambda df: pd.to_datetime(df.appointment_day),
-        # Optional: better deterministic category encoding needed when hosting model
+        # Optional: better deterministic category encoding required for model hosting
         neighborhood=lambda df: df.neighborhood.astype("category"),
         scholarship=lambda df: df.scholarship.astype("bool"),
         hipertension=lambda df: df.hipertension.astype("bool"),
