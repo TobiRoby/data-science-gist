@@ -2,6 +2,7 @@
 import multiprocessing
 from datetime import datetime
 
+import numpy as np
 from pandera.decorators import check_types
 from pandera.typing import DataFrame
 from xgboost import XGBClassifier
@@ -33,8 +34,12 @@ def train_no_show_model(
             artificial model prediction with early stopping model on all data.
     """
     # train/validation split
-    train_data = patient_appointments.query(f"appointment_day <= '{validation_start}'")
-    validation_data = patient_appointments.query(f"'{validation_start}' < appointment_day")
+    train_data = patient_appointments.query(f"appointment_day <= '{validation_start}'").reset_index(
+        drop=True
+    )
+    validation_data = patient_appointments.query(
+        f"'{validation_start}' < appointment_day"
+    ).reset_index(drop=True)
 
     # feature definition
     PATIENT_NO_SHOW_MODEL_FEATURES = [
@@ -47,9 +52,9 @@ def train_no_show_model(
         "alcoholism",
         "handcap",
         "sms_received",
-        "days_between_scheduling_and_appointment",
-        "appointment_scheduling_dayofweek",
-        "appointment_scheduling_hour",
+        # "days_between_scheduling_and_appointment",
+        # "appointment_scheduling_dayofweek",
+        # "appointment_scheduling_hour",
     ]
 
     # first model training with early stopping on training set only
@@ -87,12 +92,14 @@ def train_no_show_model(
         eval_set=eval_set,
         verbose=10,
     )
-
+    # true index column index from trained model
+    # https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier.predict_proba
+    true_predict_proba_index = np.nonzero(model.classes_)[0].item()
     # artificial model prediction on validation data
     validation_data_prediction = validation_data.assign(
         no_show_probability_prediction=lambda df: model.predict_proba(
             X=df.filter(items=PATIENT_NO_SHOW_MODEL_FEATURES)
-        )[:, 0],
+        )[:, true_predict_proba_index],
         no_show_class_prediction=lambda df: df.no_show_probability_prediction > 0.5,
     )
 

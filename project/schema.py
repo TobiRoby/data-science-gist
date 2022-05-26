@@ -1,7 +1,7 @@
 """Data(frame) schemas."""
 import pandas as pd
 from pandera import Field, SchemaModel
-from pandera.typing import Series
+from pandera.typing.pandas import Series
 
 
 class StrictModel(SchemaModel):
