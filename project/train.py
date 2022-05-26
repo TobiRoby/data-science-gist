@@ -52,9 +52,9 @@ def train_no_show_model(
         "alcoholism",
         "handcap",
         "sms_received",
-        # "days_between_scheduling_and_appointment",
-        # "appointment_scheduling_dayofweek",
-        # "appointment_scheduling_hour",
+        "days_between_scheduling_and_appointment",
+        "appointment_scheduling_dayofweek",
+        "appointment_scheduling_hour",
     ]
 
     # first model training with early stopping on training set only
