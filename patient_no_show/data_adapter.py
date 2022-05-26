@@ -5,7 +5,7 @@ import pandas as pd
 from pandera.decorators import check_types
 from pandera.typing.pandas import DataFrame
 
-from project.schema import PatientsAppointment
+from patient_no_show.schema import PatientsAppointment
 
 
 @check_types

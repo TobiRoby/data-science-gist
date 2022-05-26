@@ -4,9 +4,9 @@ from datetime import datetime
 import xgboost
 from sklearn.metrics import log_loss, roc_auc_score
 
-from project.data_adapter import load_patients_appointment_data
-from project.prepare import engineer_features
-from project.train import train_no_show_model
+from patient_no_show.data_adapter import load_patients_appointment_data
+from patient_no_show.prepare import engineer_features
+from patient_no_show.train import train_no_show_model
 
 # DATA LOADING
 # first appointment day: 2016-04-29 00:00:00+00:00

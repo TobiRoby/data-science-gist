@@ -1,7 +1,7 @@
 """Data preparation."""
 from pandera.typing.pandas import DataFrame
 
-from project.schema import PatientsAppointment, PatientsAppointmentFeaturesLabel
+from patient_no_show.schema import PatientsAppointment, PatientsAppointmentFeaturesLabel
 
 
 def engineer_features(

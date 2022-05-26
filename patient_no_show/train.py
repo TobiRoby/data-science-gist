@@ -7,7 +7,7 @@ from pandera.decorators import check_types
 from pandera.typing import DataFrame
 from xgboost import XGBClassifier
 
-from project.schema import (
+from patient_no_show.schema import (
     PatientsAppointmentFeaturesLabel,
     PatientsAppointmentFeaturesLabelPrediction,
 )

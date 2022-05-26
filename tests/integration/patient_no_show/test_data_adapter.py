@@ -1,5 +1,5 @@
 """Integration tests for data adapter."""
-from project.data_adapter import load_patients_appointment_data
+from patient_no_show.data_adapter import load_patients_appointment_data
 
 
 def test_load_patients_appointment_data():
