@@ -2,6 +2,9 @@
 /.vscode/*
 !/.vscode/settings.json.example
 
+# project
+/artifacts
+
 # python
 /env
 /analysis
