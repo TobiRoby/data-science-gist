@@ -7,11 +7,9 @@ Features:
 2. high code reproducibility with deterministic environments (container & [poetry](https://python-poetry.org/))
 3. code review automation ([pre-commit](https://pre-commit.com/), [black](https://black.readthedocs.io/en/stable/) & [isort](https://pycqa.github.io/isort/), [flake8](https://flake8.pycqa.org/en/latest/), [pydocstyle](http://www.pydocstyle.org/en/stable/) and [mypy](http://mypy-lang.org/))
 4. personal Data Science paradigms
+    - [data schema validity](#data-schema-validity)
+    - [test setup](#test-setup)
     - utilizing interactive development possibility based on jupyter with vs code's [python](https://open-vsx.org/extension/ms-python/python) extension
-    - code structuring (tbd)
-    - test setup (tbd)
-    - data schema validity (tbd)
-    - ...
 
 # 1. Quickstart aka. developing in a container
 
@@ -87,10 +85,21 @@ This project contains the following tools:
 - [flake8](https://flake8.pycqa.org/en/latest/) & [mypy](http://mypy-lang.org/) for linting and preventing common errors
 - [pydocstyle](http://www.pydocstyle.org/en/stable/) for documentation
 
-Automating/enforcing them on your project is next.\
-Via [pre-commit](https://pre-commit.com/) you can run your tool suite before every git commit making it easy for everyone to follow them.
+Afterwards you can automate and thus enforcing them in your project.\
+With [pre-commit](https://pre-commit.com/) you can run your tool suite before every git commit making it easy for everyone to follow them.
 
 # 4. Personal Data Science paradigms
-tbd
-# VS Code extensions
+## Data Schema Validity
+The project shows how to use [pandera](https://pandera.readthedocs.io/en/stable/) for defining data schemas with automatic schema checks.\
+Since the schemas are configured to be `strict` we know data schema at every major step in the data pipeline.\
+This makes debugging and testing code straight forwards and easier for everyone not familiar with the project.
+
+## Test Setup
+Separating tests into the following aspects worked in multiple projects:
+- unit: deterministic function tests
+- integration: especially checking schema validity incl. external sources
+- end2end: quick run tests for more complex data pipelines (e.g. model training and scoring)
+- infrastructure: end2end test including tests for infrastructure connectivity (e.g. querying hosted API)
+
+## VS Code extensions
 tbd
