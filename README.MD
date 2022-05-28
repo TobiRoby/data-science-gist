@@ -40,7 +40,7 @@ Tested with linux and wsl2 on windows.
 4. Optional: Rename existing `.vscode/settings.json.example` to `.vscode/settings.json` in the IDE to quickly apply suggested vscode configurations.
 
 ## Build in functionality
-1. Use your host ssh credentials in the container. \
+1. Use your host ssh credentials in the container.\
  Add your key to your hosts ssh-agent before starting the container.
     ```bash
     ssh-add
@@ -56,13 +56,13 @@ Tested with linux and wsl2 on windows.
 ## Developing in a container benefits and downsides:
 Benefits:
 - develop either on your local system or any remote machine you want. (remote development requires only port forwarding to your local system, e.g. via `ssh`)
-- no `does not run on my machine` problems
-- deployed code (container) behaves the same way as when you are developing (sharing deterministic environment)
-- combining common ide features (like debugging and testing functionality) with - often essential - interactive `jupyter` development
+- no `does not run on my machine` problems.
+- deployed code (container) behaves the same way as when you are developing. (sharing deterministic environment)
+- combining common ide features (like debugging and testing functionality) with - often essential - interactive `jupyter` development.
 - full open source solution. Not closed source like vs code's [remote extensions](https://code.visualstudio.com/docs/remote/remote-overview#_remote-development-extension-pack).
 
 Downsides:
-- harder (but possible) customization when working with multiple people
+- harder (but possible) customization when working with multiple people.
 - being a little (1-2 months) behind the latest vs code releases, due to integration dependency of code server project.
 
 # 2. High code reproducibility with deterministic environments
@@ -75,12 +75,10 @@ Deterministic environments are majorly achieved by two technologies used in this
 1. [docker](https://www.docker.com/) for deterministic virtualized images and containers
 2. [poetry](https://python-poetry.org/) as a deterministic python package manager
 
-Both technologies can be replaced via drop in replacements like [podman](https://podman.io/) for docker and [pipenv](https://pipenv.pypa.io/en/latest/) for poetry
-
-TODO explain dockerfile multi-stage build
+Both technologies can be replaced via drop in replacements like [podman](https://podman.io/) for docker and [pipenv](https://pipenv.pypa.io/en/latest/) for poetry.
 
 # 3. Code review automation
-Focusing on your main project goals and achieving them is our main goal.
+Focusing on your main project goals and achieving them is our main goal.\
 One way of freeing time in code reviews is by automating and enforcing code standards.
 
 First you need to decide what code standards you want to apply in your project.
@@ -89,7 +87,9 @@ This project contains the following tools:
 - [flake8](https://flake8.pycqa.org/en/latest/) & [mypy](http://mypy-lang.org/) for linting and preventing common errors
 - [pydocstyle](http://www.pydocstyle.org/en/stable/) for documentation
 
-A very good tool for this is [pre-commit](https://pre-commit.com/)
+Automating/enforcing them on your project is next.\
+Via [pre-commit](https://pre-commit.com/) you can run your tool suite before every git commit making it easy for everyone to follow them.
+
 # 4. Personal Data Science paradigms
 tbd
 # VS Code extensions
