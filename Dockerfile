@@ -15,10 +15,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
 RUN apt-get update \
     && apt-get install -y curl \
     && apt-get clean
-RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.2.0b1
+RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.4.1
 ENV PATH="${PATH}:/root/.local/bin"
 ENV POETRY_VIRTUALENVS_CREATE=False
-ENV POETRY_INSTALLER_MAX_WORKER=10
+ENV POETRY_INSTALLER_MAX_WORKERS=10
 
 # create app folder & add to pythonpath for direct python shell execution
 WORKDIR /home/root/app
