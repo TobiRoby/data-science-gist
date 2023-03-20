@@ -15,10 +15,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
 RUN apt-get update \
     && apt-get install -y curl \
     && apt-get clean
-RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.2.0b1
+RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.4.1
 ENV PATH="${PATH}:/root/.local/bin"
 ENV POETRY_VIRTUALENVS_CREATE=False
-ENV POETRY_INSTALLER_MAX_WORKER=10
+ENV POETRY_INSTALLER_MAX_WORKERS=10
 
 # create app folder & add to pythonpath for direct python shell execution
 WORKDIR /home/root/app
@@ -32,9 +32,9 @@ RUN apt-get update \
     && echo 'source /usr/share/bash-completion/completions/git' >> ~/.bashrc
 
 # install code-server
-RUN curl -fOL https://github.com/cdr/code-server/releases/download/v4.4.0/code-server_4.4.0_amd64.deb; \
-    dpkg -i code-server_4.4.0_amd64.deb \
-    && rm code-server_4.4.0_amd64.deb
+RUN curl -fOL https://github.com/cdr/code-server/releases/download/v4.11.0/code-server_4.11.0_amd64.deb; \
+    dpkg -i code-server_4.11.0_amd64.deb \
+    && rm code-server_4.11.0_amd64.deb
 
 # extensions to code-server
 RUN code-server --install-extension ms-python.python \
